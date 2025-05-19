@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: usmc-vml-promotions-api
+  datasource:
+    url: jdbc:hsqldb:mem:testdb
+    driverClassName: org.hsqldb.jdbcDriver
+    username: sa
+    password: 
+
+server:
+  port: 8081
+  error:
+    include-message: ALWAYS
+    include-binding-errors: ALWAYS
+
+feign:
+  httpclient:
+    disable-ssl-validation: true
+  client:
+    config:
+      default:
+        loggerLevel: full
+
+eventsClient:
+  url: localhost:8080
+
+# Common properties for all profiles
+info:
+  app:
+    name: ${spring.application.name}
+    description: USMC VML Promotions API
+    version: 1.0.0
+    api:
+      version: v1
+      base-path: /api/v1
+
+# Common Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when_authorized
+  info:
+    env:
+      enabled: true
+
+# Common OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha

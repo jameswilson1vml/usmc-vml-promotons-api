@@ -1,0 +1,33 @@
+spring:
+  profiles: prod
+
+server:
+  port: 8080
+  tomcat:
+    max-threads: 200
+    min-spare-threads: 20
+
+# Production-specific Actuator settings
+management:
+  endpoint:
+    health:
+      show-details: never
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+# Production-specific logging
+logging:
+  level:
+    com.vml.usmc: WARN
+    org.springframework: WARN
+  file:
+    name: /var/log/usmc-vml-promotions-api.log
+    max-size: 10MB
+    max-history: 10
+
+# Production-specific OpenAPI settings
+springdoc:
+  swagger-ui:
+    enabled: false  # Disable Swagger UI in production

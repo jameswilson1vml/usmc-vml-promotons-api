@@ -1,0 +1,22 @@
+spring:
+  profiles: dev
+
+server:
+  port: 8080
+
+# Development-specific Actuator settings
+management:
+  endpoint:
+    health:
+      show-details: always
+
+# Development-specific logging
+logging:
+  level:
+    com.vml.usmc: DEBUG
+    org.springframework: INFO
+
+# Development-specific OpenAPI settings
+springdoc:
+  swagger-ui:
+    enabled: true
